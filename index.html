@@ -126,6 +126,7 @@
     <div style="text-align:center; margin-top:20px;">
       <button class="btn" id="downloadBtn">Download</button>
       <button class="btn" id="clearBtn">Clear</button>
+      <button class="btn" id="runBtn">Run Code</button>
     </div>
   </div>
 
@@ -138,6 +139,7 @@
     const downloadBtn = document.getElementById('downloadBtn');
     const filenameEl = document.getElementById('filename');
     const clearBtn = document.getElementById('clearBtn');
+    const runBtn = document.getElementById('runBtn'); // NEW
 
     function makeDownload() {
       const filename = (filenameEl.value || 'page.html').trim() || 'page.html';
@@ -163,6 +165,13 @@
         e.preventDefault();
         makeDownload();
       }
+    });
+
+    runBtn.addEventListener('click', () => {
+      const newTab = window.open('', '_blank');
+      newTab.document.open();
+      newTab.document.write(codeEl.value);
+      newTab.document.close();
     });
   </script>
 </body>
